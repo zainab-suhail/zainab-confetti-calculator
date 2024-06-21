@@ -252,10 +252,9 @@ const App = () => {
     { label: 'tanh', className: 'hide' },
     { label: 'π', className: 'hide' },
     { label: 'Rand', className: 'hide' },
-    { label: 'MC', className: 'hide' },
-    { label: 'M+', className: 'hide' },
-    { label: 'M-', className: 'hide' },
-    { label: 'MR', className: 'hide' },
+    { label: '0', className: 'zero' },
+    { label: '.', className: 'num' },
+    { label: '=', className: 'op' },
   ];
 
   return (
