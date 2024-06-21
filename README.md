@@ -1,3 +1,5 @@
+Live project link: [https://zainab-confetti-calculator.vercel.app/](https://zainab-confetti-calculator.vercel.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
