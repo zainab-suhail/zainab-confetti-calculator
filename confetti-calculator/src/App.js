@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import CustomButton from './components/Button'; // Changed import to CustomButton
-import CustomDisplay from './components/Display'; // Changed import to CustomDisplay
+import Button from './components/Button';
+import Display from './components/Display';
 import ConfettiExplosion from 'react-confetti-explosion';
 
 const App = () => {
@@ -201,76 +201,77 @@ const App = () => {
       return;
     }
 
+
     // Append the label for other numeric and operator buttons
     setDisplay((prev) => prev + label);
   };
 
   const buttons = [
-    { label: '(', className: 'hide' },
-    { label: ')', className: 'hide' },
-    { label: 'mc', className: 'hide' },
-    { label: 'm+', className: 'hide' },
-    { label: 'm-', className: 'hide' },
-    { label: 'mr', className: 'hide' },
+    { label: '(', className: 'hidden-mobile' },
+    { label: ')', className: 'hidden-mobile' },
+    { label: 'mc', className: 'hidden-mobile' },
+    { label: 'm+', className: 'hidden-mobile' },
+    { label: 'm-', className: 'hidden-mobile' },
+    { label: 'mr', className: 'hidden-mobile' },
     { label: 'C', className: '' },
     { label: '±', className: '' },
     { label: '%', className: '' },
-    { label: '÷', className: 'op' },
-    { label: '2nd', className: 'hide' },
-    { label: 'x²', className: 'hide' },
-    { label: 'x³', className: 'hide' },
-    { label: 'xʸ', className: 'hide' },
-    { label: 'eˣ', className: 'hide' },
-    { label: '10ˣ', className: 'hide' },
-    { label: '7', className: 'num' },
-    { label: '8', className: 'num' },
-    { label: '9', className: 'num' },
-    { label: '×', className: 'op' },
-    { label: '¹/x', className: 'hide' },
-    { label: '²√x', className: 'hide' },
-    { label: '³√x', className: 'hide' },
-    { label: 'ʸ√x', className: 'hide' },
-    { label: 'ln', className: 'hide' },
-    { label: 'log₁₀', className: 'hide' },
-    { label: '4', className: 'num' },
-    { label: '5', className: 'num' },
-    { label: '6', className: 'num' },
-    { label: '−', className: 'op' },
-    { label: 'x!', className: 'hide' },
-    { label: 'sin', className: 'hide' },
-    { label: 'cos', className: 'hide' },
-    { label: 'tan', className: 'hide' },
-    { label: 'e', className: 'hide' },
-    { label: 'EE', className: 'hide' },
-    { label: '1', className: 'num' },
-    { label: '2', className: 'num' },
-    { label: '3', className: 'num' },
-    { label: '+', className: 'op' },
-    { label: 'Rad', className: 'hide' },
-    { label: 'sinh', className: 'hide' },
-    { label: 'cosh', className: 'hide' },
-    { label: 'tanh', className: 'hide' },
-    { label: 'π', className: 'hide' },
-    { label: 'Rand', className: 'hide' },
-    { label: '0', className: 'zero' },
-    { label: '.', className: 'num' },
-    { label: '=', className: 'op' },
+    { label: '÷', className: 'operator' },
+    { label: '2nd', className: 'hidden-mobile' },
+    { label: 'x²', className: 'hidden-mobile' },
+    { label: 'x³', className: 'hidden-mobile' },
+    { label: 'xʸ', className: 'hidden-mobile' },
+    { label: 'eˣ', className: 'hidden-mobile' },
+    { label: '10ˣ', className: 'hidden-mobile' },
+    { label: '7', className: 'number' },
+    { label: '8', className: 'number' },
+    { label: '9', className: 'number' },
+    { label: '×', className: 'operator' },
+    { label: '¹/x', className: 'hidden-mobile' },
+    { label: '²√x', className: 'hidden-mobile' },
+    { label: '³√x', className: 'hidden-mobile' },
+    { label: 'ʸ√x', className: 'hidden-mobile' },
+    { label: 'ln', className: 'hidden-mobile' },
+    { label: 'log₁₀', className: 'hidden-mobile' },
+    { label: '4', className: 'number' },
+    { label: '5', className: 'number' },
+    { label: '6', className: 'number' },
+    { label: '−', className: 'operator' },
+    { label: 'x!', className: 'hidden-mobile' },
+    { label: 'sin', className: 'hidden-mobile' },
+    { label: 'cos', className: 'hidden-mobile' },
+    { label: 'tan', className: 'hidden-mobile' },
+    { label: 'e', className: 'hidden-mobile' },
+    { label: 'EE', className: 'hidden-mobile' },
+    { label: '1', className: 'number' },
+    { label: '2', className: 'number' },
+    { label: '3', className: 'number' },
+    { label: '+', className: 'operator' },
+    { label: 'Rad', className: 'hidden-mobile' },
+    { label: 'sinh', className: 'hidden-mobile' },
+    { label: 'cosh', className: 'hidden-mobile' },
+    { label: 'tanh', className: 'hidden-mobile' },
+    { label: 'π', className: 'hidden-mobile' },
+    { label: 'Rand', className: 'hidden-mobile' },
+    { label: '0', className: 'zero number' },
+    { label: '.', className: 'number' },
+    { label: '=', className: 'operator' },
   ];
 
   return (
     <div className="calculator">
-      <CustomDisplay display={display} />
+      {isExploding && <ConfettiExplosion />}
+      <Display value={display} />
       <div className="buttons">
-        {buttons.map((button, index) => (
-          <CustomButton
+        {buttons.map((btn, index) => (
+          <Button
             key={index}
-            label={button.label}
-            className={`button ${button.className}`}
-            onClick={() => handleClick(button.label)}
+            label={btn.label}
+            className={btn.className}
+            onClick={() => handleClick(btn.label)}
           />
         ))}
       </div>
-      {isExploding && <ConfettiExplosion />}
     </div>
   );
 };
